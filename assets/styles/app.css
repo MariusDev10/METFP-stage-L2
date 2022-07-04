@@ -1,0 +1,203 @@
+.logo {
+    width: 3cm;
+    height: 3cm;
+}
+
+body {
+    user-select: none;
+    margin: 0;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+#buton button {
+    margin-left: 0.3cm;
+    font-size: 0.8em;
+}
+
+.head {
+    background-color: #C3F0EB;
+    font-weight: bold;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+#navbarColor03 {
+    float: right;
+}
+
+.liste {
+    height: 40vh;
+    overflow-y: scroll;
+}
+
+#table {
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    font-size: 0.8em;
+    background-color: #e9f5f9;
+
+}
+
+#table button {
+    font-size: 0.8em;
+}
+
+.center {
+    width: 70%;
+    margin-left: 15%;
+    height: 89vh;
+    padding: 1cm;
+    padding-top: 1cm;
+}
+
+#contenu {
+    background-color: white;
+}
+
+#logo-stat2 {
+    width: 3cm;
+    height: 3cm;
+    margin-top: 0.5cm;
+    margin-bottom: 0.5cm;
+}
+
+#logo-stat {
+    width: 2cm;
+    height: 2cm;
+    margin-bottom: 0.5cm;
+    margin-right: 0.5cm;
+}
+
+.map2 button {
+    margin-bottom: 0.5cm;
+    font-size: 0.8em;
+}
+
+.map1 {
+    width: 15%;
+    float: left;
+    text-align: center;
+    height: 89vh;
+    border-right: solid 1px gray;
+    background-color: #C3F0EB;
+}
+
+.map1 button {
+    margin-top: 0.5cm;
+}
+
+.contenu {
+    height: 100vh;
+    padding: 2cm;
+    background-color: #C3F0EB;
+}
+
+.map2 {
+    text-align: center;
+    padding-top: 1cm;
+    width: 15%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: rgb(253, 254, 255);
+    height: 89vh;
+    float: right;
+    border-left: solid 1px rgb(191, 187, 187);
+}
+
+.map2 #logo-stat {
+    margin-left: 1.7cm;
+    margin-top: 0.5cm;
+}
+
+.one h5 {
+    font-weight: bold;
+}
+
+.one {
+    width: 7cm;
+    background-color: #C3F0EB;
+    height: 20vh;
+    box-shadow: 0 0 2px #1ABA2A;
+    border-radius: 7px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    animation: anime 1s;
+}
+
+.center ul {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin-top: 1cm;
+    margin-bottom: 1cm;
+}
+
+.porte-logo {
+    padding: auto;
+    background-color: white;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin: 0.3cm;
+    padding: 1cm;
+}
+
+.center p {
+    font-size: 0.7em;
+    padding: 0.3cm;
+    background-color: aliceblue;
+}
+
+.center ul li {
+    margin-right: 1cm;
+    list-style-type: none;
+
+}
+
+@keyframes anime {
+    0% {
+        opacity: 0;
+        margin-left: -1cm;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+
+
+
+/* LOGIN STYLE */
+
+#login {
+    padding: 3cm;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+#login h3 {
+    text-align: center;
+    margin-bottom: 0.5cm;
+}
+
+#login form {
+    width: 40%;
+    height: auto;
+    background-color: #C3F0EB;
+    padding: 1cm;
+    border-radius: 15px;
+}
+
+#login form button {
+    width: 100%;
+}
+
+#login form input {
+    margin-bottom: 0.5cm;
+}
+
+#login form label {
+    font-size: 0.7em;
+    font-weight: bold;
+}

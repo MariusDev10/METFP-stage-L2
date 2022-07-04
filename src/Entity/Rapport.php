@@ -2,10 +2,14 @@
 
 namespace App\Entity;
 
-use App\Repository\RapportRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\RapportRepository;
+use ApiPlatform\Core\Annotation\ApiResource;
 
 #[ORM\Entity(repositoryClass: RapportRepository::class)]
+/**
+ * @ApiResource
+ */
 class Rapport
 {
     #[ORM\Id]

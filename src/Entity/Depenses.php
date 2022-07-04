@@ -2,12 +2,17 @@
 
 namespace App\Entity;
 
-use App\Repository\DepensesRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\DepensesRepository;
+use Doctrine\Common\Collections\Collection;
+use ApiPlatform\Core\Annotation\ApiResource;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: DepensesRepository::class)]
+
+/**
+ * @ApiResource
+ */
 class Depenses
 {
     #[ORM\Id]
@@ -74,14 +79,14 @@ class Depenses
     }
 
     /**
-     * @return Collection<int, mission>
+     * @return Collection<int, Mission>
      */
     public function getDepense(): Collection
     {
         return $this->depense;
     }
 
-    public function addDepense(mission $depense): self
+    public function addDepense(Mission $depense): self
     {
         if (!$this->depense->contains($depense)) {
             $this->depense[] = $depense;
@@ -91,7 +96,7 @@ class Depenses
         return $this;
     }
 
-    public function removeDepense(mission $depense): self
+    public function removeDepense(Mission $depense): self
     {
         if ($this->depense->removeElement($depense)) {
             // set the owning side to null (unless already changed)

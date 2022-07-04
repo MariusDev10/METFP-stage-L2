@@ -2,11 +2,16 @@
 
 namespace App\Entity;
 
-use App\Repository\MissionRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\MissionRepository;
+use ApiPlatform\Core\Annotation\ApiResource;
+
 
 #[ORM\Entity(repositoryClass: MissionRepository::class)]
-class Mission
+/**
+ * @ApiResource
+ */
+class mission
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]

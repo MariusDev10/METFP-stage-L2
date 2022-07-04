@@ -2,14 +2,19 @@
 
 namespace App\Entity;
 
-use App\Repository\MissionnaireRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use App\Repository\MissionnaireRepository;
+use Doctrine\Common\Collections\Collection;
+use ApiPlatform\Core\Annotation\ApiResource;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 #[ORM\Entity(repositoryClass: MissionnaireRepository::class)]
+
+/**
+ * @ApiResource
+ */
 class Missionnaire implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -76,7 +81,7 @@ class Missionnaire implements UserInterface, PasswordAuthenticatedUserInterface
     public function getRoles(): array
     {
         $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
+        // guarantee every user at least has ROLE_USER 
         $roles[] = 'ROLE_USER';
 
         return array_unique($roles);
@@ -150,14 +155,14 @@ class Missionnaire implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, mission>
+     * @return Collection<int, Mission>
      */
     public function getMission(): Collection
     {
         return $this->mission;
     }
 
-    public function addMission(mission $mission): self
+    public function addMission(Mission $mission): self
     {
         if (!$this->mission->contains($mission)) {
             $this->mission[] = $mission;
@@ -167,7 +172,7 @@ class Missionnaire implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function removeMission(mission $mission): self
+    public function removeMission(Mission $mission): self
     {
         if ($this->mission->removeElement($mission)) {
             // set the owning side to null (unless already changed)

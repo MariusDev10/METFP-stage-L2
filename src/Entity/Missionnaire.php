@@ -2,26 +2,39 @@
 
 namespace App\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\MissionnaireRepository;
 use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 #[ORM\Entity(repositoryClass: MissionnaireRepository::class)]
 
 /**
- * @ApiResource
+ * @ApiResource(
+ *  normalizationContext={
+ *      "groups"={"missionnaire_read"}
+ *  }
+ * )
  */
 class Missionnaire implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
+    /**
+     * @Groups({"missionnaire_read","missions_read"})
+     */
     private $id;
 
+    /**
+     * @Assert\NotBlank(message="L'email doit etre renseigne!")
+     * @Assert\NotBlank(message="L'adresse email doit avoir un format valide!")
+     */
     #[ORM\Column(type: 'string', length: 180, unique: true)]
     private $email;
 
@@ -29,18 +42,39 @@ class Missionnaire implements UserInterface, PasswordAuthenticatedUserInterface
     private $roles = [];
 
     #[ORM\Column(type: 'string')]
+    /**
+     * @Assert\NotBlank(message="Le mot de passe est obligatoire")
+     * @Assert\Length(min=8, minMessage="Le Mot de passe doit etre au moin 8 caracteres")
+     */
     private $password;
 
     #[ORM\Column(type: 'string', length: 255)]
+    /**
+     * @Groups({"missionnaire_read","missions_read"})
+     * @Assert\NotBlank(message="Le nom de passe est obligatoire")
+     * @Assert\Length(min=4, minMessage="Le nom doit etre au moin 4 caracteres")
+     */
     private $nom;
 
     #[ORM\Column(type: 'string', length: 255)]
+    /**
+     * @Groups({"missionnaire_read","missions_read"})
+     * @Assert\NotBlank(message="Le prenom de passe est obligatoire")
+     * @Assert\Length(min=4, minMessage="Le prenom doit etre au moin 4 caracteres")
+     */
     private $prenom;
 
     #[ORM\Column(type: 'string', length: 255)]
+    /**
+     * @Groups({"missionnaire_read","missions_read"})
+     * @Assert\NotBlank(message="Le fonction est obligatoire")
+     */
     private $fonction;
 
     #[ORM\OneToMany(mappedBy: 'missionnaire', targetEntity: mission::class)]
+    /**
+     * @Groups({"missionnaire_read"})
+     */
     private $mission;
 
     public function __construct()

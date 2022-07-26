@@ -5,8 +5,13 @@
 
 body {
     user-select: none;
-    margin: 0;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin: -1;
+    font-family: system-ui;
+    font-weight: bold;
+}
+
+#nav {
+    background-color: #C3F0EB !important;
 }
 
 #buton button {
@@ -17,6 +22,7 @@ body {
 .head {
     background-color: #C3F0EB;
     font-weight: bold;
+    width: 100%;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
@@ -24,17 +30,35 @@ body {
     float: right;
 }
 
+
 .liste {
-    height: 40vh;
+    height: 45vh;
     overflow-y: scroll;
+}
+
+#liste {
+    height: 48vh;
+    overflow-y: scroll;
+}
+
+#table1 button {
+    font-family: system-ui;
+    font-size: 0.8em;
 }
 
 #table {
     font-family: 'Courier New', Courier, monospace;
     text-align: center;
-    font-size: 0.8em;
-    background-color: #e9f5f9;
+    font-size: 0.7em;
+    padding: 1cm;
+}
 
+#table1 {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: normal;
+    text-align: center;
+    font-size: 0.8em;
+    padding: 1cm;
 }
 
 #table button {
@@ -42,7 +66,7 @@ body {
 }
 
 .center {
-    width: 70%;
+    width: 85%;
     margin-left: 15%;
     height: 89vh;
     padding: 1cm;
@@ -67,9 +91,14 @@ body {
     margin-right: 0.5cm;
 }
 
-.map2 button {
-    margin-bottom: 0.5cm;
-    font-size: 0.8em;
+.qr img {
+    width: 4cm;
+    height: 4cm;
+    margin: 0.5cm;
+}
+
+.map1 button {
+    width: 70%;
 }
 
 .map1 {
@@ -77,12 +106,20 @@ body {
     float: left;
     text-align: center;
     height: 89vh;
-    border-right: solid 1px gray;
+    border-right: solid 1px #C3F0EB;
     background-color: #C3F0EB;
+}
+
+.one:hover {
+    transform: scale(1.06);
+    transition: 1s;
 }
 
 .map1 button {
     margin-top: 0.5cm;
+    font-family: system-ui;
+    font-weight: bold;
+    font-size: 0.8em;
 }
 
 .contenu {
@@ -91,24 +128,9 @@ body {
     background-color: #C3F0EB;
 }
 
-.map2 {
-    text-align: center;
-    padding-top: 1cm;
-    width: 15%;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: rgb(253, 254, 255);
-    height: 89vh;
-    float: right;
-    border-left: solid 1px rgb(191, 187, 187);
-}
-
-.map2 #logo-stat {
-    margin-left: 1.7cm;
-    margin-top: 0.5cm;
-}
-
 .one h5 {
     font-weight: bold;
+    color: black;
 }
 
 .one {
@@ -133,7 +155,6 @@ body {
 
 .porte-logo {
     padding: auto;
-    background-color: white;
     align-items: center;
     justify-content: center;
     display: flex;
@@ -153,6 +174,27 @@ body {
 
 }
 
+#cherc form input {
+    width: 15cm;
+    margin-right: 0.3cm;
+}
+
+#cherc form {
+    float: right;
+    display: flex;
+}
+
+#cherc h4 {
+    margin-top: 0.3cm;
+    color: #117c73;
+    font-weight: bold;
+}
+
+#cherc {
+    padding: 0.5cm;
+    padding-top: 2cm;
+}
+
 @keyframes anime {
     0% {
         opacity: 0;
@@ -164,16 +206,36 @@ body {
     }
 }
 
+@keyframes animer {
+    0% {
+        opacity: 0;
+        margin-top: -1cm;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
 
 
 
 /* LOGIN STYLE */
 
 #login {
-    padding: 3cm;
+    padding: 1.4cm;
     align-items: center;
     justify-content: center;
     display: flex;
+    width: 70%;
+    padding: auto;
+    border-radius: 15px;
+    background-color: white;
+    height: 65vh;
+    font-family: system-ui;
+    box-shadow: 0 0 7px green;
+    margin-top: 5%;
+
+
 }
 
 #login h3 {
@@ -181,16 +243,56 @@ body {
     margin-bottom: 0.5cm;
 }
 
+.logo2 {
+    float: right;
+    text-align: center;
+    width: 60%;
+    padding: 1cm;
+    height: 8.1cm;
+    animation: animer 2s;
+}
+
+.logo2 img {
+    width: 8cm;
+}
+
+.logo2 button {
+    font-size: 0.7em;
+}
+
+.logo2 h4 {
+    font-weight: bold;
+    font-family: Open Sans;
+}
+
+#login form a {
+    text-decoration: none;
+}
+
+#login form h4 {
+    margin-bottom: 1cm;
+}
+
+#login form span {
+    font-size: 0.7em;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bold;
+    color: blue;
+}
+
 #login form {
     width: 40%;
+    text-align: center;
+    float: left;
+    border-radius: 15px;
     height: auto;
     background-color: #C3F0EB;
     padding: 1cm;
-    border-radius: 15px;
 }
 
 #login form button {
     width: 100%;
+    margin-bottom: 1cm;
 }
 
 #login form input {
@@ -200,4 +302,334 @@ body {
 #login form label {
     font-size: 0.7em;
     font-weight: bold;
+}
+
+.map1 i img {
+    width: 0.3cm;
+}
+
+.logo2 i img {
+    width: 0.3cm;
+}
+
+/* NAV */
+#Nav {
+    background-color: #20bcaf !important;
+    color: white !important;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+/* RAPPORT */
+
+#rapport {
+    border-radius: 15px;
+    height: auto;
+    margin-top: 0.3cm;
+    padding-top: 0.5cm;
+}
+
+.titre h4 {
+    text-align: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bold;
+    margin-top: 0.5cm;
+}
+
+#formulaire {
+    height: auto;
+    width: 97%;
+    border: solid 2px green;
+    border-radius: 15px;
+    background-color: #d0d7da00;
+    margin: 0.5cm;
+    animation: animer 1.3s;
+    margin-top: 1cm;
+    padding-right: 1.5cm;
+}
+
+.form3 {
+    float: left;
+}
+
+.left {
+    width: 50%;
+    float: left;
+}
+
+.right {
+    width: 50%;
+    float: right;
+}
+
+.left2 {
+    width: 50%;
+    float: left;
+    padding: 0.5cm;
+}
+
+.right2 {
+    width: 50%;
+    float: right;
+    padding: 0.5cm;
+
+}
+
+.rap3 {
+    border-radius: 15px;
+    width: 100%;
+    padding: 0.5cm;
+}
+
+.rap1 input {
+    width: 7cm;
+}
+
+.rap1 textarea {
+    width: 7cm;
+    display: -webkit-inline-flex;
+}
+
+.depense {
+    padding: 1cm;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    float: right;
+    height: auto;
+    border-radius: 15px;
+    background-color: #d0d7da00;
+
+}
+
+.depense input {
+    width: 6cm;
+    font-size: 0.8em;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.depense h4 {
+    text-align: center;
+}
+
+.header a h5 {
+    font-weight: bold;
+}
+
+.header a {
+    color: white;
+    text-decoration: none;
+}
+
+.header {
+    padding: 1.5%;
+    color: white;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    height: 10vh;
+    border-radius: 0px 0px 15px 15px;
+    background-color: #20bcaf;
+}
+
+.rap1 {
+    border-radius: 15px;
+    float: left;
+    width: 50%;
+    padding: 1.2cm;
+    height: auto;
+}
+
+.rap2 button {
+    width: 30%;
+    margin-top: 0.5cm;
+    margin-left: 0.3cm;
+}
+
+#formulaire form input {
+    margin-bottom: 0.5cm;
+    color: green;
+    background-color: transparent;
+}
+
+#formulaire form label {
+    font-size: 0.7em;
+}
+
+.rap2 {
+    float: right;
+    width: 50%;
+    padding-left: 0.5cm;
+}
+
+.footer {
+    height: 10vh;
+    background-color: #20bcaf;
+    border-radius: 15px 15px 0px 0px;
+}
+
+
+/* USER REGISTER */
+
+#user {
+    width: auto;
+    height: 80vh;
+    padding: 1cm;
+    border-radius: 15px;
+}
+
+.metfp {
+    width: 40%;
+    height: 60vh;
+    float: left;
+    padding-top: 2cm;
+    padding-left: 2cm;
+}
+
+.metfp img {
+    width: 13cm;
+}
+
+.repub {
+    animation: animer 2s;
+    margin-right: 2cm;
+    width: 50%;
+    border-radius: 25px;
+    height: auto;
+    padding-top: 0.5cm;
+    box-shadow: 0 0 4px rgb(30, 109, 42);
+    float: right;
+}
+
+.resister {
+    padding-left: 3cm;
+    text-align: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.repub form {
+    padding: 1cm;
+    margin-top: 0.5cm;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 0.8em;
+}
+
+.repub form input {
+    margin-bottom: 0.3cm;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: #1ABA2A;
+    font-size: 0.8em;
+    font-weight: bold;
+    padding: 10px;
+
+}
+
+.resister h5 {
+    margin-top: 0.2cm;
+}
+
+.resister img {
+    width: 1cm;
+    margin-right: 0.5cm;
+}
+
+/*ACCEUIL*/
+
+#img {
+    width: 50%;
+    height: 70vh;
+    padding: 1cm;
+    float: left;
+    border-radius: 25PX;
+    text-align: center;
+    animation: animer 2s;
+    background-color: white;
+}
+
+.logo {
+    margin-bottom: 3cm;
+}
+
+#acc {
+    box-shadow: 0 0 7px #20bcaf;
+    border-radius: 15px;
+
+    margin-top: 1cm;
+}
+
+#img h3 {
+    color: #117c73;
+    margin-top: 1cm;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+#img img {
+    width: 12cm;
+}
+
+.design img {
+    width: 12cm;
+    border-radius: 30%;
+
+}
+
+.design {
+    margin-left: 0.1cm;
+    width: 50%;
+    border-radius: 25px;
+    height: 70vh;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    background-color: white;
+}
+
+#img button {
+
+    width: 100%;
+}
+
+#insc {
+    margin-right: 0.1cm;
+}
+
+.test {
+    width: 3cm;
+    z-index: 10000;
+    height: 0.7cm;
+}
+
+
+/* PDF */
+
+.impreLogo {
+    width: 4cm;
+    margin-left: 40%;
+}
+
+.description {
+    width: 40%;
+    text-align: center;
+    margin-top: 0.5cm;
+    float: left;
+}
+
+.tittle {
+    width: 40%;
+    float: right;
+    margin-top: 1.5cm;
+}
+
+.print {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.content2 {
+    width: 100%;
+    margin-top: 5cm;
+}
+
+.logo3 {
+    width: 100%;
+}
+
+.printIco {
+    width: 1cm;
 }

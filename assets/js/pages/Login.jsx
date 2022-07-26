@@ -1,12 +1,19 @@
-import Axios from "axios";
+
 import React, { useState } from "react";
 import '../../styles/app.css';
+import logo from '../../image/republique.jpg';
+import login from '../../image/connect.svg';
+import authAPI from "../services/authAPI";
+import { toast } from "react-toastify";
 
-const Login = (props) => {
+
+const Login = ({ onLogin, history }) => {
     const [credentials, setCredentials] = useState({
         username: "",
         password: ""
     });
+
+    const [error, setError] = useState("");
     const handleChange = (Event) => {
         const value = Event.currentTarget.value;
         const name = Event.currentTarget.name;
@@ -14,54 +21,70 @@ const Login = (props) => {
         setCredentials({ ...credentials, [name]: value });
     }
 
-    const handleSubmit = Event => {
+    const handleSubmit = async Event => {
         Event.preventDefault();
         try {
-            Axios
-                .post("", credentials)
-                .then(response => console.log(response));
+            await authAPI.authenticate(credentials);
+            setError("");
+            onLogin(true);
+            toast.success("Vous etes bien connecte")
+            history.replace("/home");
         } catch (error) {
-            console.log(error.response);
+            setError("Aucun compte correspond a cette information . Veiller ressayer ");
+            toast.error("Une erreur est survenue veiller ressayer")
         }
     }
+
     return (
         <>
-            <div className="container" id="login">
 
+            <div className="container" id="login">
                 <form onSubmit={handleSubmit}>
-                    <div class="form-group">
-                        <h3>Connexion</h3>
-                        <div class="form-floating mb-3">
+                    <div className="form-group">
+                        <h4>Connexion</h4>
+                        <div className="form-floating mb-3">
                             <input
                                 value={credentials.username}
                                 onChange={handleChange}
                                 name="username"
                                 type="email"
-                                className="form-control"
+                                className={"form-control" + (error && " is-invalid")}
                                 id="username"
                                 placeholder="name@example.com"
                             />
-                            <label for="floatingInput">Adresse E-mail</label>
+                            <label>Email</label>
+
                         </div>
+
                         <div className="form-floating">
                             <input
                                 value={credentials.password}
                                 name="password"
                                 onChange={handleChange}
                                 type="password"
-                                className="form-control"
+                                className={"form-control" + (error && " is-invalid")}
                                 id="password"
                                 placeholder="Password"
                             />
-                            <label for="floatingPassword">Mot de passe</label>
+                            <label>Mot de passe</label>
                         </div>
+
                         <div className="form-group">
-                            <button className="btn btn-success" type="submit">Seconnecter</button>
+                            <button className="btn btn-success" type="submit"><i><img src={login} alt="" /> </i>  Seconnecter</button>
                         </div>
+                        <a href="#"><span>Mot de passe oublié ?</span></a>
                     </div>
                 </form>
+                <div className="logo2">
+                    <h4>RAPPORT DE MISSION</h4>
+                    <img src={logo} className="img-fluid" /><br />
+
+                </div>
 
             </div>
+            <footer style={{ height: '1.5cm', backgroundColor: ' #20bcaf', marginTop: '1.3cm', textAlign: 'center' }}>
+                <p style={{ fontSize: '0.7em', color: 'white', paddingTop: '0.5cm' }}>Ministere de l'enseignement Technique et de Formation Professionnelle Copyright 2022</p>
+            </footer>
 
         </>
     );

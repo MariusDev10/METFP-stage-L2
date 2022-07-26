@@ -5,38 +5,74 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\MissionRepository;
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 
 #[ORM\Entity(repositoryClass: MissionRepository::class)]
 /**
- * @ApiResource
+ * @ApiResource(
+ *  normalizationContext={
+ *      "groups"={"missions_read"}
+ *  }
+ * )
+ */
+/**
+ * @ApiResource(
+ *  attributes={
+ *      "order": {"date_mission":"desc"}
+ *  }
+ * )
  */
 class mission
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
+    /**
+     * @Groups({"missions_read","missionnaire_read"})
+     */
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
+    /**
+     * @Groups({"missions_read","missionnaire_read"})
+     */
     private $objectif;
 
     #[ORM\Column(type: 'datetime')]
+    /**
+     * @Groups({"missions_read","missionnaire_read"})
+     */
     private $date_mission;
 
     #[ORM\Column(type: 'string', length: 255)]
+    /**
+     * @Groups({"missions_read","missionnaire_read"})
+     */
     private $destination;
 
     #[ORM\Column(type: 'string', length: 255)]
+    /**
+     * @Groups({"missions_read","missionnaire_read"})
+     */
     private $lieu_intervation;
 
     #[ORM\Column(type: 'string', length: 255)]
+    /**
+     * @Groups({"missions_read","missionnaire_read"})
+     */
     private $coordonne_gps;
 
     #[ORM\Column(type: 'string', length: 255)]
+    /**
+     * @Groups({"missions_read","missionnaire_read"})
+     */
     private $contexte;
 
     #[ORM\Column(type: 'string', length: 255)]
+    /**
+     * @Groups({"missions_read","missionnaire_read"})
+     */
     private $deroulement;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
@@ -50,9 +86,15 @@ class mission
 
     #[ORM\ManyToOne(targetEntity: Depenses::class, inversedBy: 'depense')]
     #[ORM\JoinColumn(nullable: false)]
+    /**
+     * @Groups({"missions_read"})
+     */
     private $depenses;
 
     #[ORM\ManyToOne(targetEntity: Missionnaire::class, inversedBy: 'mission')]
+    /**
+     * @Groups({"missions_read"})
+     */
     private $missionnaire;
 
     public function getId(): ?int

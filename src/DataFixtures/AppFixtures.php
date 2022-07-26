@@ -48,11 +48,11 @@ class AppFixtures extends Fixture
                         ->setDestination($faker->country)
                         ->setLieuIntervation($faker->country)
                         ->setCoordonneGps($faker->longitude)
-                        ->setContexte($faker->text(50))
-                        ->setDeroulement($faker->text(90))
-                        ->setAutreActivite($faker->text(30))
-                        ->setDifficulte($faker->text(30))
-                        ->setSuggestion($faker->text(30))
+                        ->setContexte($faker->text(10))
+                        ->setDeroulement($faker->text(10))
+                        ->setAutreActivite($faker->text(10))
+                        ->setDifficulte($faker->text(10))
+                        ->setSuggestion($faker->text(10))
                         ->setDepenses($depense)
                         ->setMissionnaire($user);
                     $manager->persist($mission);

@@ -97,6 +97,9 @@ class mission
      */
     private $missionnaire;
 
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $remarque;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -242,6 +245,18 @@ class mission
     public function setMissionnaire(?Missionnaire $missionnaire): self
     {
         $this->missionnaire = $missionnaire;
+
+        return $this;
+    }
+
+    public function getRemarque(): ?string
+    {
+        return $this->remarque;
+    }
+
+    public function setRemarque(?string $remarque): self
+    {
+        $this->remarque = $remarque;
 
         return $this;
     }

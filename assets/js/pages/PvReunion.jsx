@@ -42,7 +42,7 @@ const PvReunion = props => {
                                     <Field label="Participants" value={missions.contexte} onChange={handleChange} name="contexte" type="text" />
                                     <button className="btn btn-danger" style={{ width: '100%' }}>Enregistrer</button>
                                 </div>
-                                <div className="right2" style={{ textAlign: 'center', backgroundColor: '#20bcaf', color: 'white', borderRadius: '15px' }}>
+                                <div className="right2">
                                     <p>CONTENUE</p>
                                     <Editor
                                         onInit={(evt, editor) => editorRef.current = editor}

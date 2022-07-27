@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './styles/app.css';
 import ReactDOM from 'react-dom';
+
 import { HashRouter, Switch, Route, withRouter, Redirect } from 'react-router-dom';
 // start the Stimulus application
 import './bootstrap';
@@ -18,6 +19,7 @@ import PrintPDF from './js/components/PrintPDF';
 import PvReunion from './js/pages/PvReunion';
 import ListePVR from './js/pages/ListePVR';
 import PrintPVR from './js/components/PrintPVR';
+import Profil from './js/pages/Profil';
 
 authAPI.setup();
 const App = () => {
@@ -53,6 +55,16 @@ const App = () => {
                         path='/printPVR'
                         render={props => isAuthenticated ?
                             (<PrintPVR {...props} />
+                            ) : (
+                                <Redirect to='/login' />
+                            )
+                        }
+                    />
+                    /* PROFIL */
+                    <Route
+                        path='/profil'
+                        render={props => isAuthenticated ?
+                            (<Profil {...props} />
                             ) : (
                                 <Redirect to='/login' />
                             )

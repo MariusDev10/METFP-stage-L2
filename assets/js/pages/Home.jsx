@@ -47,30 +47,49 @@ const Home = ({ history }) => {
                     <NavLink to="/Rapport"><button className="btn btn-success"><i><img src={add} alt="" /></i>  Nouveau rapport</button></NavLink>
                     <NavLink to="/Listes"><button className="btn btn-success"><i><img src={list} alt="" /></i>  Liste des missions</button></NavLink>
                     <NavLink to="/ListePVR"><button className="btn btn-success"><i><img src={list} alt="" /></i> Listes PV reunion</button></NavLink>
-                    <button className="btn btn-danger" onClick={handleLogout}>Deconnection</button>
+                    <hr />
+                    <div className="compte">
+                        <h6>Utilisateur Connecté</h6> <hr />
+                        <img src={compte} alt="" style={{ width: '3cm' }} />
+                        <p>RANDRIANARISON</p>
+                        <button className="btn btn-danger" onClick={handleLogout}>Deconnection</button>
+                    </div>
                 </div>
 
                 <div className="center">
                     <p> Ministère de l'Enseignement Technique et de Formation Proffesionnelle</p>
                     <ul>
                         <li>
-                            <div className="one">
-                                <img src={stat} id="logo-stat" className="img-fluid" />
-                                <h5>MISSION</h5>
-
-                            </div>
+                            <NavLink to='/profil'>
+                                <div className="one">
+                                    <img src={compte} id="logo-stat" className="img-fluid mt-3" />
+                                    <h5>PROFIL</h5>
+                                </div>
+                            </NavLink>
                         </li>
                         <li>
-                            <div className="one">
-                                <img src={depense} id="logo-stat" className="img-fluid" />
-                                <h5>PV REUNION</h5>
-                            </div>
+                            <NavLink to='/Listes'>
+                                <div className="one">
+                                    <img src={stat} id="logo-stat" className="img-fluid" />
+                                    <h5>MISSION</h5>
+                                </div>
+                            </NavLink>
                         </li>
                         <li>
-                            <div className="one">
-                                <img src={rapport} id="logo-stat" className="img-fluid" />
-                                <h5>RAPPORT</h5>
-                            </div>
+                            <NavLink to='/ListePVR'>
+                                <div className="one">
+                                    <img src={depense} id="logo-stat" className="img-fluid" />
+                                    <h5>REUNION</h5>
+                                </div>
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to='/Rapport'>
+                                <div className="one">
+                                    <img src={rapport} id="logo-stat" className="img-fluid" />
+                                    <h5>RAPPORT</h5>
+                                </div>
+                            </NavLink>
                         </li>
                     </ul>
                     <h6>VOS MISSIONS RECENTES</h6>

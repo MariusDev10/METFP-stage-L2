@@ -12,7 +12,7 @@ import axios from "axios";
 const PrintPDF = props => {
     const { id } = props.match.params;
     const componentRef = useRef();
-    const [mission, setMissions] = useState([]);
+    const [missions, setMissions] = useState([]);
     const handlePrint = useReactToPrint({
         content: () => componentRef.current,
         documentTitle: 'Impression de Rapport',
@@ -53,6 +53,13 @@ const PrintPDF = props => {
                 <div className="tittle">
                     <h3>RAPPORT DE MISSION</h3>
                 </div>
+
+                <>
+                    <h6>Date : </h6>
+                    <h6>Destination :</h6>
+                    <h6>Objectif : </h6>
+                    <h6 className="mt-5">Missionnaire</h6>
+                </>
 
                 <div className="content2">
                     <h6>Date :</h6>

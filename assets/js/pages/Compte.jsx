@@ -69,7 +69,7 @@ const Compte = ({ history }) => {
                                     error={errors.nom}
                                     type="text"
                                     className="form-control"
-                                    placeholder="name@example.com"
+                                    placeholder="votre nom"
                                     required
                                 />
                             </div>

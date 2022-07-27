@@ -29,14 +29,7 @@ const Navbar = ({ isAuthenticated, onLogout }) => {
                                         </button>
                                     </a>
                                 </li>
-                                <li className="nav-item">
-                                    <a className="nav-link" href="#/Rapport">
-                                        <button className="btn btn-default" style={{ border: 'solid 1px white', fontSize: '0.7em', fontWeight: 'bold' }}>
-                                            <i><img src={add} alt="" style={{ width: '0.3cm' }} /> </i>
-                                            Rapport
-                                        </button>
-                                    </a>
-                                </li>
+
                                 <li className="nav-item">
                                     <a className="nav-link" href="#/pvReunion">
                                         <button className="btn btn-default" style={{ border: 'solid 1px white', fontSize: '0.7em', fontWeight: 'bold' }}>

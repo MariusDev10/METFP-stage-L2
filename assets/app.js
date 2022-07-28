@@ -52,7 +52,7 @@ const App = () => {
                         }
                     />
                     <Route
-                        path='/printPVR/:id'
+                        path='/printPVR/:idR'
                         render={props => isAuthenticated ?
                             (<PrintPVR {...props} />
                             ) : (

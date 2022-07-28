@@ -1,15 +1,18 @@
 
-import React, { useRef, useState, useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import '../../styles/app.css';
 import { useReactToPrint } from "react-to-print";
 import { toast } from "react-toastify";
 import logo from '../../image/republique.jpg';
 import ico from '../../image/print.png';
 import moment from "moment";
+import { async } from "regenerator-runtime";
+import axios from "axios";
+
 
 const PrintPVR = props => {
-    const { id } = props.match.params;
-    const [missions, setMissions] = useState({
+    const { idR } = props.match.params;
+    const [pvReunion, setPvReunion] = useState({
         date_mission: "",
         contexte: "",
         lieuIntervation: "",
@@ -23,25 +26,24 @@ const PrintPVR = props => {
         onAfterPrint: () => toast.success("Impression termine avec succee")
     });
     const date = new Date();
-
     // GET PV REUNION
-    const fetchMission = async id => {
+    const fetchReunion = async idR => {
         try {
             const data = await axios
-                .get("http://127.0.0.1:8000/api/missions/" + id)
+                .get("http://127.0.0.1:8000/api/missions/" + idR)
                 .then(Response => Response.data);
-            console.log(data);
             const { date_mission, contexte, lieuIntervation, objectif } = data;
-            setMissions({ date_mission, contexte, lieuIntervation, objectif });
+            setPvReunion({ date_mission, contexte, lieuIntervation, objectif });
         } catch (error) {
             console.log(error.Response);
         }
     }
     useEffect(() => {
-        if (id != 'new') {
-            fetchMission(id);
+        if (idR != 'new') {
+            fetchReunion(idR);
         }
-    }, [id]);
+    }, [idR]);
+
     return (
         <>
             <button className="btn btn-danger" onClick={handlePrint} style={{ position: 'fixed', marginTop: '1cm', zIndex: '2', marginLeft: '1.5cm', width: '2cm' }}>
@@ -60,40 +62,12 @@ const PrintPVR = props => {
                     <h3>PV REUNION METFP</h3>
                 </div>
                 <div className="content2" style={{ marginTop: '8cm', marginBottom: "1.5cm" }}>
-                    <h6>Objet: <b className="resultat">{missions.contexte}</b></h6>
-                    <h6>Lieu : <b className="resultat">{missions.lieuIntervation}</b></h6>
-                    <h6>Date : <b className="resultat">{formatDate(missions.date_mission)}</b></h6>
-                    <h6>Participants : <b className="resultat">{missions.objectif}</b></h6>
-
-                </div>
-                <div className="content3">
-                    <p>
-                        Ce 14 Juillet 2022 , une quarantaine (40) de personnes ont répondu à l’invitation du Ministère de L’Enseignement Technique et de la Formation Professionnelle (METFP) pour une Réunion concernant le PTA 2023. Madame le SG a ouvert la séance et Monsieur le Directeur du DPSSE  a annoncé l’ordre du jour qui se divise en trois (3) parties : <br />
-                        <div className="partie" style={{ marginLeft: '2cm', marginTop: '0.2cm', marginBottom: '1cm' }}>
-                            	Préparation planification 2023 du Ministère <br />
-                            	Savoir préparer un PTA initial <br />
-                            	Repartir les groupes de travail <br />
-                        </div>
-                        Lors de la réunion, la feuille de route de PTA est énoncé et  repartit comme suit : <br />
-                        <div className="deroule" style={{ marginLeft: '2cm', marginTop: '0.2cm', marginBottom: '1cm' }}>
-
-                            	14 au 20 Juillet 2022 : Travail par Direction  et consolidation par Direction Général ( Programme Administration et coordination ) <br />
-                            	21 au 23 Juillet 2022 : Insertion et compilation des activités <br />
-                            	23-31 Juillet 2022 : Budgétisation et programmation <br />
-                            	01 au 13 Août 2022 : Consolidation et transmission <br />
-                        </div>
-                        Pour faciliter la tâche de chaque direction on a répartissez  les directions du Ministère en 3 groupe: <br />
-                        <div className="tache" style={{ marginLeft: '2cm', marginTop: '0.2cm' }}>
-
-                            	Groupe 1: Direction transversales (SG, CGPP , DAF, DIDN DRH, PRMP) <br />
-                            	Groupe 2: DGIF <br />
-                            	Groupe 3 : DGEFT <br />
-                        </div>
-                        Il a été convenue chaque groupe doit travailler en équipe avec le PRMP et un personnel du PDPSSE .
-                    </p>
+                    <h6>Objet: <b className="resultat">{pvReunion.objectif}</b></h6>
+                    <h6>Lieu : <b className="resultat">{pvReunion.lieuIntervation}</b></h6>
+                    <h6>Date : <b className="resultat">{formatDate(pvReunion.date_mission)}</b></h6>
+                    <h6>Participants : <b className="resultat">{pvReunion.contexte}</b></h6>
                 </div>
             </div>
-
 
         </>
     );

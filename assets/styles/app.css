@@ -634,7 +634,7 @@ body {
 
 .content2 {
     width: 100%;
-    margin-top: 5cm;
+    margin-top: 6cm;
 }
 
 .logo3 {
@@ -666,4 +666,12 @@ body {
 .name {
     text-align: center;
     margin-bottom: 1cm;
+}
+
+.resultat {
+    color: red;
+    margin-left: 1cm;
+    font-family: monospace;
+    text-transform: capitalize;
+    text-decoration: wavy;
 }

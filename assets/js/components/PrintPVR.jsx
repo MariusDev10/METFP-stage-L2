@@ -1,5 +1,5 @@
 
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import '../../styles/app.css';
 import { useReactToPrint } from "react-to-print";
 import { toast } from "react-toastify";
@@ -7,7 +7,15 @@ import logo from '../../image/republique.jpg';
 import ico from '../../image/print.png';
 import moment from "moment";
 
-const PrintPVR = () => {
+const PrintPVR = props => {
+    const { id } = props.match.params;
+    const [missions, setMissions] = useState({
+        date_mission: "",
+        contexte: "",
+        lieuIntervation: "",
+        objectif: "",
+    });
+    const formatDate = (str) => moment(str).format("DD/MM/YYYY");
     const componentRef = useRef();
     const handlePrint = useReactToPrint({
         content: () => componentRef.current,
@@ -16,6 +24,24 @@ const PrintPVR = () => {
     });
     const date = new Date();
 
+    // GET PV REUNION
+    const fetchMission = async id => {
+        try {
+            const data = await axios
+                .get("http://127.0.0.1:8000/api/missions/" + id)
+                .then(Response => Response.data);
+            console.log(data);
+            const { date_mission, contexte, lieuIntervation, objectif } = data;
+            setMissions({ date_mission, contexte, lieuIntervation, objectif });
+        } catch (error) {
+            console.log(error.Response);
+        }
+    }
+    useEffect(() => {
+        if (id != 'new') {
+            fetchMission(id);
+        }
+    }, [id]);
     return (
         <>
             <button className="btn btn-danger" onClick={handlePrint} style={{ position: 'fixed', marginTop: '1cm', zIndex: '2', marginLeft: '1.5cm', width: '2cm' }}>
@@ -34,10 +60,10 @@ const PrintPVR = () => {
                     <h3>PV REUNION METFP</h3>
                 </div>
                 <div className="content2" style={{ marginTop: '8cm', marginBottom: "1.5cm" }}>
-                    <h6>Objet: </h6>
-                    <h6>Lieu : </h6>
-                    <h6>Date : </h6>
-                    <h6>Participants</h6>
+                    <h6>Objet: <b className="resultat">{missions.contexte}</b></h6>
+                    <h6>Lieu : <b className="resultat">{missions.lieuIntervation}</b></h6>
+                    <h6>Date : <b className="resultat">{formatDate(missions.date_mission)}</b></h6>
+                    <h6>Participants : <b className="resultat">{missions.objectif}</b></h6>
 
                 </div>
                 <div className="content3">

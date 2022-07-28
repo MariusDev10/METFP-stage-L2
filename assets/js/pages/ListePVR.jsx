@@ -55,7 +55,7 @@ const ListesMission = () => {
                                     <td>{mission.lieu_intervation}</td>
                                     <td>{mission.objectif}</td>
                                     <td>
-                                        <NavLink to='/printPVR'><button className="btn btn-sm btn-success mt-2">Imprimer</button></NavLink>
+                                        <NavLink to={"/printPVR/" + mission.id}><button className="btn btn-sm btn-success mt-2">Imprimer</button></NavLink>
                                     </td>
                                 </tr>
                             )}

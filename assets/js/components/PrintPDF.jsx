@@ -12,20 +12,37 @@ import axios from "axios";
 const PrintPDF = props => {
     const { id } = props.match.params;
     const componentRef = useRef();
-    const [missions, setMissions] = useState([]);
+    const [missions, setMissions] = useState({
+        date_mission: "",
+        deroulement: "",
+        coordonneGps: "",
+        contexte: "",
+        destination: "",
+        difficulte: "",
+        lieuIntervation: "",
+        objectif: "",
+        suggestion: "",
+        autre_activite: "",
+        missionnaire: ""
+    });
+
+
     const handlePrint = useReactToPrint({
         content: () => componentRef.current,
         documentTitle: 'Impression de Rapport',
         onAfterPrint: () => toast.success("Impression termine avec succee")
     });
+    const formatDate = (str) => moment(str).format("DD/MM/YYYY");
     const date = new Date();
+
     const fetchMission = async id => {
         try {
             const data = await axios
                 .get("http://127.0.0.1:8000/api/missions/" + id)
-                .then(Response => Response.data)
-                .then(data => setMissions(data));
+                .then(Response => Response.data);
             console.log(data);
+            const { date_mission, deroulement, coordonneGps, contexte, destination, difficulte, lieuIntervation, objectif, suggestion, autre_activite, missionnaire } = data;
+            setMissions({ date_mission, deroulement, coordonneGps, contexte, destination, difficulte, lieuIntervation, objectif, suggestion, autre_activite, missionnaire });
         } catch (error) {
             console.log(error.Response);
         }
@@ -34,7 +51,6 @@ const PrintPDF = props => {
         if (id != 'new') {
             fetchMission(id);
         }
-
     }, [id]);
     return (
         <>
@@ -54,17 +70,10 @@ const PrintPDF = props => {
                     <h3>RAPPORT DE MISSION</h3>
                 </div>
 
-                <>
-                    <h6>Date : </h6>
-                    <h6>Destination :</h6>
-                    <h6>Objectif : </h6>
-                    <h6 className="mt-5">Missionnaire</h6>
-                </>
-
                 <div className="content2">
-                    <h6>Date :</h6>
-                    <h6>Destination :</h6>
-                    <h6>Objectif : </h6>
+                    <h6>Date : <b className="resultat">{formatDate(missions.date_mission)}</b></h6>
+                    <h6>Destination : <b className="resultat">{missions.destination}</b></h6>
+                    <h6>Objectif : <b className="resultat">{missions.objectif}</b></h6>
                     <h6 className="mt-5">Missionnaire</h6>
                     <table className="table table-bordered mb-4 text-center" border={2}>
                         <thead>
@@ -75,17 +84,17 @@ const PrintPDF = props => {
                         </thead>
                         <tbody>
                             <tr>
-                                <td>RANDRIANARISON Jacquit Marius</td>
+                                <td>{missions.missionnaire}</td>
                                 <td>Developpeur</td>
                             </tr>
                         </tbody>
                     </table>
-                    <h6>Lieux d'Intervention et Coordonnées GPS : </h6>
-                    <h6>Contexte : </h6>
-                    <h6>Deroulement de la mission :</h6>
-                    <h6>Autres activités menées : </h6>
-                    <h6>Difficulté rencontrées : </h6>
-                    <h6>Suggestions : </h6>
+                    <h6>Lieux d'Intervention et Coordonnées GPS : <b className="resultat">{missions.lieuIntervation} / {missions.coordonneGps}</b></h6>
+                    <h6>Contexte : <b className="resultat">{missions.contexte}</b></h6>
+                    <h6>Deroulement de la mission : <b className="resultat">{missions.deroulement}</b></h6>
+                    <h6>Autres activités menées : <b className="resultat">{missions.autre_activite}</b></h6>
+                    <h6>Difficulté rencontrées : <b className="resultat">{missions.difficulte}</b></h6>
+                    <h6>Suggestions : <b className="resultat">{missions.suggestion}</b></h6>
                     <h6>Depenses liées à la Mission</h6>
                     <table className="table table-bordered mt-4 mb-3 p-13" border={2}>
                         <tbody>
@@ -138,7 +147,7 @@ const PrintPDF = props => {
                     </table>
                 </div>
                 <h6><u>Remarque : </u></h6>
-                <h6>Antananarivo le : {moment(date).format("DD/MM/YYYY")}</h6>
+                <h6>Antananarivo le : <b className="resultat">{moment(date).format("DD/MM/YYYY")}</b></h6>
             </div>
 
 

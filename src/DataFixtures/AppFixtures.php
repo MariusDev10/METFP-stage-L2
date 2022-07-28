@@ -5,6 +5,7 @@ namespace App\DataFixtures;
 use App\Entity\Depenses;
 use App\Entity\Mission;
 use App\Entity\Missionnaire;
+use App\Entity\Reunion;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -29,11 +30,17 @@ class AppFixtures extends Fixture
             $hash = $this->encoder->hashPassword($user, "password");
             $user->setNom($faker->name)
                 ->setPrenom($faker->firstName)
-                ->setFonction($faker->company)
+                ->setFonction($faker->city)
                 ->setEmail($faker->email)
                 ->setPassword($hash);
-
             $manager->persist($user);
+            $reunion = new Reunion();
+            $reunion->setObjet($faker->text(50))
+                ->setLieu($faker->company)
+                ->setDate($faker->dateTimeThisYear())
+                ->setParticipants($faker->text(20))
+                ->setContenu($faker->text(200));
+            $manager->persist($reunion);
             for ($k = 0; $k < mt_rand(2, 10); $k++) {
                 $depense = new Depenses();
                 $depense->setDesignation($faker->text(10))
@@ -47,7 +54,7 @@ class AppFixtures extends Fixture
                         ->setDateMission($faker->dateTimeBetween('-1 months'))
                         ->setDestination($faker->country)
                         ->setLieuIntervation($faker->country)
-                        ->setCoordonneGps($faker->longitude)
+                        ->setCoordonneGps($faker->latitude)
                         ->setContexte($faker->text(10))
                         ->setDeroulement($faker->text(10))
                         ->setAutreActivite($faker->text(10))

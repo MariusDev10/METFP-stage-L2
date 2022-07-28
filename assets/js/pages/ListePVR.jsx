@@ -11,15 +11,15 @@ import add from '../../image/add.png';
 const ListesMission = () => {
 
     const formatDate = (str) => moment(str).format("DD/MM/YYYY");
-    const [missions, setMissions] = useState([]);
+    const [reunions, setReunions] = useState([]);
     const [Loading, setLoading] = useState(true);
 
     //GET LISTE PV REUNION
     useEffect(() => {
         axios
-            .get("http://127.0.0.1:8000/api/missions")
+            .get("http://127.0.0.1:8000/api/reunions")
             .then(Response => Response.data["hydra:member"])
-            .then(data => setMissions(data))
+            .then(data => setReunions(data))
             .then(data => setLoading(false));
         toast.info("Voici la liste des PV Reunion Existants");
     }, []);
@@ -53,14 +53,14 @@ const ListesMission = () => {
 
                         </thead>
                         {!Loading && <tbody>
-                            {missions.map(mission =>
-                                <tr key={mission.id} >
-                                    <td>{mission.contexte}</td>
-                                    <td>{formatDate(mission.date_mission)}</td>
-                                    <td>{mission.lieu_intervation}</td>
-                                    <td>{mission.objectif}</td>
+                            {reunions.map(reunion =>
+                                <tr key={reunion.id} >
+                                    <td>{reunion.objet}</td>
+                                    <td>{formatDate(reunion.date)}</td>
+                                    <td>{reunion.lieu}</td>
+                                    <td>{reunion.participants}</td>
                                     <td>
-                                        <NavLink to={"/printPVR/" + mission.id}><button className="btn btn-sm btn-success mt-2">Imprimer</button></NavLink>
+                                        <NavLink to={"/printPVR/" + reunion.id}><button className="btn btn-sm btn-success mt-2">Imprimer</button></NavLink>
                                     </td>
                                 </tr>
                             )}

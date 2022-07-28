@@ -15,10 +15,10 @@ const PrintPVR = props => {
     const formatDate = (str) => moment(str).format("DD/MM/YYYY");
     const { idR } = props.match.params;
     const [pvReunion, setPvReunion] = useState({
-        date_mission: "",
-        contexte: "",
-        lieuIntervation: "",
-        objectif: "",
+        date: "",
+        objet: "",
+        lieu: "",
+        participants: "",
     });
 
     // GESTION D'IMPRESSION
@@ -33,10 +33,10 @@ const PrintPVR = props => {
     const fetchReunion = async idR => {
         try {
             const data = await axios
-                .get("http://127.0.0.1:8000/api/missions/" + idR)
+                .get("http://127.0.0.1:8000/api/reunions/" + idR)
                 .then(Response => Response.data);
-            const { date_mission, contexte, lieuIntervation, objectif } = data;
-            setPvReunion({ date_mission, contexte, lieuIntervation, objectif });
+            const { date, participants, lieu, objet } = data;
+            setPvReunion({ date, participants, lieu, objet });
         } catch (error) {
             console.log(error.Response);
         }
@@ -65,10 +65,10 @@ const PrintPVR = props => {
                     <h3>PV REUNION METFP</h3>
                 </div>
                 <div className="content2" style={{ marginTop: '8cm', marginBottom: "1.5cm" }}>
-                    <h6>Objet: <b className="resultat">{pvReunion.objectif}</b></h6>
-                    <h6>Lieu : <b className="resultat">{pvReunion.lieuIntervation}</b></h6>
-                    <h6>Date : <b className="resultat">{formatDate(pvReunion.date_mission)}</b></h6>
-                    <h6>Participants : <b className="resultat">{pvReunion.contexte}</b></h6>
+                    <h6>Objet: <b className="resultat">{pvReunion.objet}</b></h6>
+                    <h6>Lieu : <b className="resultat">{pvReunion.lieu}</b></h6>
+                    <h6>Date : <b className="resultat">{formatDate(pvReunion.date)}</b></h6>
+                    <h6>Participants : <b className="resultat">{pvReunion.participants}</b></h6>
                 </div>
             </div>
 

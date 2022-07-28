@@ -113,7 +113,7 @@ const Home = ({ history }) => {
                                         <td>{mission.coordonne_gps}</td>
                                         <td>{mission.objectif}</td>
                                         <td>
-                                            <NavLink to={"/print/" + mission.id}><button className="btn btn-sm btn-danger mt-2">Imprimer</button></NavLink>
+                                            <NavLink to={"/print/" + mission.id}><button className="btn btn-sm btn-success mt-2">Imprimer</button></NavLink>
                                         </td>
                                     </tr>
                                 )}

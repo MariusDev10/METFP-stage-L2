@@ -48,7 +48,7 @@ body {
 }
 
 #table {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;
     font-size: 0.7em;
     padding: 1cm;
@@ -669,7 +669,7 @@ body {
 }
 
 .resultat {
-    color: red;
+    color: #117c73;
     margin-left: 1cm;
     font-family: monospace;
     text-transform: capitalize;

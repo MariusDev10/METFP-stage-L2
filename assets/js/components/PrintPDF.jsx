@@ -60,8 +60,9 @@ const PrintPDF = props => {
     }, [id]);
     return (
         <>
-            <button className="btn btn-danger" onClick={handlePrint} style={{ position: 'fixed', marginTop: '1cm', zIndex: '2', marginLeft: '1.5cm', width: '2cm' }}>
-                <img src={ico} alt="" className="printIco" />
+            <button className="btn btn-danger btn-sm" onClick={handlePrint} style={{ position: 'fixed', marginTop: '1cm', zIndex: '2', marginLeft: '1.5cm', width: '2cm' }}>
+                <img src={ico} style={{ width: '0.5cm' }} />
+                imprimer
             </button>
             <div ref={componentRef} style={{ width: '100%', height: 'auto', padding: '1cm' }} className="print">
                 <div className="logo3">

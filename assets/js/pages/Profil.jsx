@@ -1,8 +1,10 @@
 import React from "react";
 import '../../styles/app.css';
+
+/**Importation des images */
 import logo from '../../image/republique.jpg';
 import photos from '../../image/user.webp';
-import Field from "../components/Forms/Field";
+
 const Profil = () => {
     return (
         <>
@@ -24,7 +26,7 @@ const Profil = () => {
                     </div>
                 </div>
                 <div className="container" style={{ float: 'left', width: '60%', textAlign: 'center' }}>
-                    <img src={logo} alt="" />
+                    <img src={logo} alt="" className="img-fluid" />
 
                 </div>
             </div>

@@ -1,15 +1,11 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import '../../styles/app.css';
-import authAPI from "../services/authAPI";
-import Loading from "./loaders/Loading";
+
+/**imporation des images */
 import add from '../../image/add.png';
 
-const Navbar = ({ isAuthenticated, onLogout }) => {
-    const handleLogout = () => {
-        authAPI.logout();
-        onLogout(false);
-    };
+const Navbar = ({ isAuthenticated }) => {
     return (
         <>
             <nav className="navbar navbar-expand-lg navbar-dark bg-primary" id="Nav">
@@ -24,9 +20,7 @@ const Navbar = ({ isAuthenticated, onLogout }) => {
                             <ul className="navbar-nav me-auto">
                                 <li className="nav-item">
                                     <a className="nav-link" href="#/home">
-                                        <button className="btn btn-default active" style={{ border: 'solid 1px white', fontSize: '0.7em', fontWeight: 'bold' }}>
-                                            Principale
-                                        </button>
+                                        <button className="btn btn-default active" style={{ border: 'solid 1px white', fontSize: '0.7em', fontWeight: 'bold' }}>Principale</button>
                                     </a>
                                 </li>
 
@@ -54,7 +48,7 @@ const Navbar = ({ isAuthenticated, onLogout }) => {
                                 <NavLink to="/login"><button className="btn btn-primary my-2 my-sm-0 ml-5" type="submit">Connexion</button></NavLink>
 
                             </> || (
-                                    <Loading />
+                                    <button className="btn btn-danger btn-sm" disabled>connected</button>
                                 )}
                         </div>
                     </div>

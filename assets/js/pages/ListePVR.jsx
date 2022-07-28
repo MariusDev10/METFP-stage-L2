@@ -1,14 +1,20 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import add from '../../image/add.png';
 import moment from "moment";
 import { Link, NavLink } from "react-router-dom";
 import { toast } from "react-toastify";
 import Loader from "../components/loaders/loader";
+
+/**importation des images */
+import add from '../../image/add.png';
+
 const ListesMission = () => {
-    //GET MISSIONS
+
+    const formatDate = (str) => moment(str).format("DD/MM/YYYY");
     const [missions, setMissions] = useState([]);
     const [Loading, setLoading] = useState(true);
+
+    //GET LISTE PV REUNION
     useEffect(() => {
         axios
             .get("http://127.0.0.1:8000/api/missions")
@@ -18,7 +24,6 @@ const ListesMission = () => {
         toast.info("Voici la liste des PV Reunion Existants");
     }, []);
 
-    const formatDate = (str) => moment(str).format("DD/MM/YYYY");
     return (
         <>
             <div>
@@ -32,7 +37,7 @@ const ListesMission = () => {
                         <i><img src={add} alt="" style={{ width: '0.3cm' }} /> </i>
                         Nouveau PV Reunion
                     </Link>
-                    <h4>LISTES DE PV EXISTANTS</h4>
+                    <h4>LISTES DES PV REUNION EXISTANTS</h4>
                 </div>
                 <div className="container-fluid mt-2" id="liste">
 

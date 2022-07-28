@@ -33,6 +33,8 @@ const App = () => {
                 <Switch>
 
                     <Route path='/login' render={props => <Login onLogin={setIsAuthenticated} {...props} />} />
+
+                    /** ROUTE VERS L'IMPRESSION DES RAPPORTS DE MISSION */
                     <Route
                         path='/print/:id'
                         render={props => isAuthenticated ?
@@ -42,6 +44,8 @@ const App = () => {
                             )
                         }
                     />
+
+                    /**ROUTE VERS LA LISTE DES PV REUNION EXISTANTS */
                     <Route
                         path='/ListePVR'
                         render={props => isAuthenticated ?
@@ -51,6 +55,8 @@ const App = () => {
                             )
                         }
                     />
+
+                    /**ROUTE VERS L'IMPRESSION DE PV REUNION */
                     <Route
                         path='/printPVR/:idR'
                         render={props => isAuthenticated ?
@@ -60,7 +66,7 @@ const App = () => {
                             )
                         }
                     />
-                    /* PROFIL */
+                    /**ROUTE VERS LE PROFIL DE L'UTILISATEUR CONNECTE */
                     <Route
                         path='/profil'
                         render={props => isAuthenticated ?
@@ -70,6 +76,8 @@ const App = () => {
                             )
                         }
                     />
+
+                    /**ROUTE VERS L'AJOUT DE NOUVELLE PV REUNION */
                     <Route
                         path='/pvReunion'
                         render={props => isAuthenticated ?
@@ -79,6 +87,8 @@ const App = () => {
                             )
                         }
                     />
+
+                    /**PAGE D'ACCEUIL DE L'APPLICATION */
                     <Route
                         path='/home'
                         render={props => isAuthenticated ?
@@ -88,6 +98,8 @@ const App = () => {
                             )
                         }
                     />
+
+                    /**ROUTE VERS LA LISTE DES RAPPORT DE MISSION EFFECTUES */
                     <Route
                         path='/Listes'
                         render={props => isAuthenticated ?
@@ -97,6 +109,8 @@ const App = () => {
                             )
                         }
                     />
+
+                    /**ROUTE VERS L'AJOUT DE NOUVELLE RAPPORT DE MISSION */
                     <Route
                         path='/rapport'
                         render={props => isAuthenticated ?
@@ -106,7 +120,10 @@ const App = () => {
                             )
                         }
                     />
+                    /**ROUTE VERS LA PAGE D'INSCRIPTION */
                     <Route path='/compte' component={Compte} />
+
+                    /**route vers la page de bienvenue */
                     <Route path='/' component={Acceuil} />
 
                 </Switch>

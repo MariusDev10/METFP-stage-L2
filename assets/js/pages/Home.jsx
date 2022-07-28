@@ -1,22 +1,25 @@
 import React, { useEffect, useState } from "react";
-import stat from '../../image/stat.png';
-import compte from '../../image/user.webp';
-import logo from '../../image/logo.png';
-import rapport from '../../image/rapp.png';
-import depense from '../../image/dep.png';
 import '../../styles/app.css';
 import axios from "axios";
-import add from '../../image/add.png';
-import list from '../../image/list.svg';
 import authAPI from "../services/authAPI";
 import { NavLink } from "react-router-dom";
 import moment from "moment";
 import { toast } from "react-toastify";
 import Loader from "../components/loaders/loader";
 
+/**IMPORTATION DES IMAGES NECESSAIRE */
+import stat from '../../image/stat.png';
+import compte from '../../image/user.webp';
+import logo from '../../image/logo.png';
+import rapport from '../../image/rapp.png';
+import depense from '../../image/dep.jpg';
+import add from '../../image/add.png';
+import list from '../../image/list.svg';
 
 
 const Home = ({ history }) => {
+    const date = new Date();
+    const formatDate = (str) => moment(str).format("DD/MM/YYYY");
     //GET MISSIONS
     const [missions, setMissions] = useState([]);
     const [Loading, setLoading] = useState(true);
@@ -27,18 +30,15 @@ const Home = ({ history }) => {
             .then(data => setMissions(data))
             .then(data => setLoading(false))
     }, []);
-    //GET USER COMPTE
+
     const handleLogout = () => {
         authAPI.logout();
         history.replace("/login");
         toast.info("Actualiser votre navigateur pour assurer votre deconnection")
     }
-    const date = new Date();
-    const formatDate = (str) => moment(str).format("DD/MM/YYYY");
 
     return (
         <>
-
             <div id="contenu">
                 <div className="map1">
                     <div className="porte-logo">
@@ -50,12 +50,11 @@ const Home = ({ history }) => {
                     <hr />
                     <div className="compte">
                         <h6>Utilisateur Connecté</h6> <hr />
-                        <img src={compte} alt="" style={{ width: '3cm' }} />
+                        <img src={compte} alt="" style={{ width: '3cm', borderRadius: '50%', marginBottom: '0.3cm' }} />
                         <p>RANDRIANARISON</p>
                         <button className="btn btn-danger" onClick={handleLogout}>Deconnection</button>
                     </div>
                 </div>
-
                 <div className="center">
                     <p> Ministère de l'Enseignement Technique et de Formation Proffesionnelle</p>
                     <ul>
@@ -70,7 +69,7 @@ const Home = ({ history }) => {
                         <li>
                             <NavLink to='/Listes'>
                                 <div className="one">
-                                    <img src={stat} id="logo-stat" className="img-fluid" />
+                                    <img src={stat} id="logo-stat" className="img-fluid mt-3" />
                                     <h5>MISSION</h5>
                                 </div>
                             </NavLink>
@@ -78,7 +77,7 @@ const Home = ({ history }) => {
                         <li>
                             <NavLink to='/ListePVR'>
                                 <div className="one">
-                                    <img src={depense} id="logo-stat" className="img-fluid" />
+                                    <img src={depense} id="logo-stat" className="img-fluid mt-3" />
                                     <h5>REUNION</h5>
                                 </div>
                             </NavLink>
@@ -86,7 +85,7 @@ const Home = ({ history }) => {
                         <li>
                             <NavLink to='/Rapport'>
                                 <div className="one">
-                                    <img src={rapport} id="logo-stat" className="img-fluid" />
+                                    <img src={rapport} id="logo-stat" className="img-fluid mt-3" />
                                     <h5>RAPPORT</h5>
                                 </div>
                             </NavLink>

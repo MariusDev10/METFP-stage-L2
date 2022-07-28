@@ -44,8 +44,6 @@ function isAuthenticated() {
     }
     return false;
 }
-
-
 export default {
     authenticate,
     logout,

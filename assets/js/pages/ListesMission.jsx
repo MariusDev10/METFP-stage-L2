@@ -6,9 +6,12 @@ import { Link, NavLink } from "react-router-dom";
 import { toast } from "react-toastify";
 import Loader from "../components/loaders/loader";
 const ListesMission = () => {
-    //GET MISSIONS
+
+    const formatDate = (str) => moment(str).format("DD/MM/YYYY");
     const [missions, setMissions] = useState([]);
     const [Loading, setLoading] = useState(true);
+
+    //GET MISSIONS
     useEffect(() => {
         axios
             .get("http://127.0.0.1:8000/api/missions")
@@ -18,7 +21,7 @@ const ListesMission = () => {
         toast.info("Voici la liste de vos Missions");
     }, []);
 
-    const formatDate = (str) => moment(str).format("DD/MM/YYYY");
+
     return (
         <>
             <div>

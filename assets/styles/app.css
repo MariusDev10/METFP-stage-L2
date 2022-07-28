@@ -133,12 +133,12 @@ body {
     font-weight: bold;
     color: black;
     font-size: 1em;
-    margin-left: -0.4cm;
+    margin-left: -0.2cm;
     text-decoration: none !important;
 }
 
 .one {
-    width: 5cm;
+    width: 6cm;
     background-color: #C3F0EB;
     height: 17vh;
     box-shadow: 0 0 2px #1ABA2A;

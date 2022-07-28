@@ -1,11 +1,11 @@
-
 import React, { useState } from "react";
 import '../../styles/app.css';
-import logo from '../../image/republique.jpg';
-import login from '../../image/connect.svg';
 import authAPI from "../services/authAPI";
 import { toast } from "react-toastify";
 
+/**importation des images */
+import logo from '../../image/republique.jpg';
+import login from '../../image/connect.svg';
 
 const Login = ({ onLogin, history }) => {
     const [credentials, setCredentials] = useState({
@@ -78,7 +78,6 @@ const Login = ({ onLogin, history }) => {
                 <div className="logo2">
                     <h4>RAPPORT DE MISSION</h4>
                     <img src={logo} className="img-fluid" /><br />
-
                 </div>
 
             </div>

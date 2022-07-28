@@ -3,15 +3,21 @@ import React, { useEffect, useRef, useState } from "react";
 import '../../styles/app.css';
 import { useReactToPrint } from "react-to-print";
 import { toast } from "react-toastify";
-import logo from '../../image/republique.jpg';
-import ico from '../../image/print.png';
 import moment from "moment";
 import { async } from "regenerator-runtime";
 import axios from "axios";
 
+/**importation des images */
+import logo from '../../image/republique.jpg';
+import ico from '../../image/print.png';
+
 const PrintPDF = props => {
+
+    const formatDate = (str) => moment(str).format("DD/MM/YYYY");
+    const date = new Date();
+
     const { id } = props.match.params;
-    const componentRef = useRef();
+
     const [missions, setMissions] = useState({
         date_mission: "",
         deroulement: "",
@@ -26,15 +32,15 @@ const PrintPDF = props => {
         missionnaire: ""
     });
 
-
+    //GESTION D'IMPRESSION EN REACT
+    const componentRef = useRef();
     const handlePrint = useReactToPrint({
         content: () => componentRef.current,
         documentTitle: 'Impression de Rapport',
         onAfterPrint: () => toast.success("Impression termine avec succee")
     });
-    const formatDate = (str) => moment(str).format("DD/MM/YYYY");
-    const date = new Date();
 
+    //GET RAPPORT (MISSIONS)
     const fetchMission = async id => {
         try {
             const data = await axios

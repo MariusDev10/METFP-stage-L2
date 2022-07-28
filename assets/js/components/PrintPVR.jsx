@@ -3,14 +3,16 @@ import React, { useEffect, useRef, useState } from "react";
 import '../../styles/app.css';
 import { useReactToPrint } from "react-to-print";
 import { toast } from "react-toastify";
-import logo from '../../image/republique.jpg';
-import ico from '../../image/print.png';
 import moment from "moment";
 import { async } from "regenerator-runtime";
 import axios from "axios";
 
+/**importation des images */
+import logo from '../../image/republique.jpg';
+import ico from '../../image/print.png';
 
 const PrintPVR = props => {
+    const formatDate = (str) => moment(str).format("DD/MM/YYYY");
     const { idR } = props.match.params;
     const [pvReunion, setPvReunion] = useState({
         date_mission: "",
@@ -18,14 +20,15 @@ const PrintPVR = props => {
         lieuIntervation: "",
         objectif: "",
     });
-    const formatDate = (str) => moment(str).format("DD/MM/YYYY");
+
+    // GESTION D'IMPRESSION
     const componentRef = useRef();
     const handlePrint = useReactToPrint({
         content: () => componentRef.current,
         documentTitle: 'Impression PVR',
         onAfterPrint: () => toast.success("Impression termine avec succee")
     });
-    const date = new Date();
+
     // GET PV REUNION
     const fetchReunion = async idR => {
         try {

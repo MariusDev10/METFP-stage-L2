@@ -60,7 +60,6 @@ const Rapport = props => {
                                 <Field label="Difficulté" value={missions.difficulte} onChange={handleChange} name="difficulte" type="text" />
                                 <Field label="Autre activite Menée" value={missions.autre_activite} onChange={handleChange} name="autre_activite" type="text" />
                             </div>
-
                         </div>
                         <div className="rap2">
                             <div className="depense">
@@ -75,7 +74,6 @@ const Rapport = props => {
                                     <Field placeholder="vers le lieu de destination" type="number" value={missions.frais_retour_vers_la_destination} onChange={handleChange} name="frais_retour_vers_la_destination" />
                                     <Field label="Restauration" value={missions.restauration} onChange={handleChange} name="restauration" type="number" />
                                     <Field label="Quantité" value={missions.quantite} onChange={handleChange} name="quantite" type="number" />
-
                                 </div>
                                 <Field label="Remarque" value={missions.remarque} onChange={handleChange} name="remarque" type="text" />
                                 <div className="form-group">
@@ -83,12 +81,9 @@ const Rapport = props => {
                                     <button type="submit" className="btn btn-danger btn-sm">Rapporter</button>
                                 </div>
                             </div>
-
                         </div>
-
                     </form>
                 </div>
-
             </div>
         </>
     );

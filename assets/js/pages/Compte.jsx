@@ -1,14 +1,17 @@
 
 import React, { useState } from "react";
 import '../../styles/app.css';
-import logo from '../../image/republique.jpg';
-import logo1 from '../../image/logo.png';
+import Field from "../components/Forms/Field";
 import { Link } from "react-router-dom";
 import { async } from "regenerator-runtime";
 import { toast } from "react-toastify";
 import Axios from "axios";
-const Compte = ({ history }) => {
 
+/**importation des images */
+import logo from '../../image/republique.jpg';
+import logo1 from '../../image/logo.png';
+
+const Compte = ({ history }) => {
     const [user, setUser] = useState({
         nom: "",
         prenom: "",
@@ -28,14 +31,11 @@ const Compte = ({ history }) => {
         event.preventDefault();
         try {
             const response = await Axios.post("http://127.0.0.1:8000/api/missionnaires", user);
-            console.log(response);
             toast.success("Compte creer avec succés")
             history.replace("/login");
-
         } catch (error) {
             console.log(error.response);
             const { violation } = error.response.data;
-
             if (violation) {
                 const apiError = {};
                 violation.forEach(violation => {
@@ -61,9 +61,9 @@ const Compte = ({ history }) => {
                         </div>
                         <form onSubmit={handleSubmit}>
                             <div className="form-group">
-                                <label htmlFor="">Nom</label>
-                                <input
+                                <Field
                                     value={user.nom}
+                                    label="Nom"
                                     onChange={handleChange}
                                     name="nom"
                                     error={errors.nom}
@@ -74,9 +74,9 @@ const Compte = ({ history }) => {
                                 />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="">Prenom</label>
-                                <input
+                                <Field
                                     value={user.prenom}
+                                    label="Prenom"
                                     error={errors.prenom}
                                     onChange={handleChange}
                                     type="text"
@@ -87,10 +87,10 @@ const Compte = ({ history }) => {
                                 />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="">Votre Poste (fonction)</label>
-                                <input
+                                <Field
                                     type="text"
                                     name="fonction"
+                                    label="Votre poste"
                                     className="form-control"
                                     placeholder="Poste chez METFP"
                                     error={errors.fonction}
@@ -100,9 +100,9 @@ const Compte = ({ history }) => {
                                 />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="">Adresse E-mail</label>
-                                <input
+                                <Field
                                     type="email"
+                                    label="Adresse Email"
                                     name="email"
                                     className="form-control"
                                     placeholder="Email"
@@ -113,10 +113,10 @@ const Compte = ({ history }) => {
                                 />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="">Votre mot de passe</label>
-                                <input
+                                <Field
                                     type="password"
                                     name="password"
+                                    label="Votre mot de passe"
                                     className="form-control"
                                     placeholder="Mot de passe"
                                     error={errors.password}
@@ -126,9 +126,9 @@ const Compte = ({ history }) => {
                                 />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="">Comfirmer votre  mot de passe</label>
-                                <input
+                                <Field
                                     type="password"
+                                    label="Comfirmer votre  mot de passe"
                                     name="passwordComfirm"
                                     className="form-control"
                                     placeholder=" comfirmation Mot de passe"

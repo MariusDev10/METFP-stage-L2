@@ -1,11 +1,14 @@
 import React, { useRef, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
 import '../../styles/app.css';
 import { toast } from "react-toastify";
 import Field from "../components/Forms/Field";
-import logo from '../../image/logo.png';
 import { Editor } from "@tinymce/tinymce-react";
+
+/**IMPORTATION DES IMAGES */
+import logo from '../../image/logo.png';
 const PvReunion = props => {
+
+    /**ajout d'une noouvelle PV REUNION */
     const [missions, setMissions] = useState({
         date: "",
         destination: "",
@@ -18,6 +21,8 @@ const PvReunion = props => {
         const name = Event.currentTarget.name;
         setMissions({ ...missions, [name]: value });
     }
+
+    /**GET TINYMCE CONTENT */
     const editorRef = useRef();
     const handler = (e, editor) => {
         alert(editorRef.current.getContent());
@@ -49,10 +54,7 @@ const PvReunion = props => {
                                     />
                                     <button className="btn btn-success btn-sm mt-3" onClick={handler}>Voir le resultat</button>
                                 </div>
-
-
                             </div>
-
                         </div>
                     </form>
                 </div>

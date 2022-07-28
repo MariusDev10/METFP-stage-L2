@@ -29,7 +29,8 @@ const PrintPDF = props => {
         objectif: "",
         suggestion: "",
         autre_activite: "",
-        missionnaire: ""
+        missionnaire: "",
+        remarque: ""
     });
 
     //GESTION D'IMPRESSION EN REACT
@@ -47,8 +48,8 @@ const PrintPDF = props => {
                 .get("http://127.0.0.1:8000/api/missions/" + id)
                 .then(Response => Response.data);
             console.log(data);
-            const { date_mission, deroulement, coordonneGps, contexte, destination, difficulte, lieuIntervation, objectif, suggestion, autre_activite, missionnaire } = data;
-            setMissions({ date_mission, deroulement, coordonneGps, contexte, destination, difficulte, lieuIntervation, objectif, suggestion, autre_activite, missionnaire });
+            const { date_mission, deroulement, coordonneGps, contexte, destination, difficulte, lieuIntervation, objectif, suggestion, autre_activite, missionnaire, remarque } = data;
+            setMissions({ date_mission, deroulement, coordonneGps, contexte, destination, difficulte, lieuIntervation, objectif, suggestion, autre_activite, missionnaire, remarque });
         } catch (error) {
             console.log(error.Response);
         }
@@ -153,7 +154,7 @@ const PrintPDF = props => {
                         </tbody>
                     </table>
                 </div>
-                <h6><u>Remarque : </u></h6>
+                <h6><u>Remarque : <b className="resultat">{missions.remarque}</b></u></h6>
                 <h6>Antananarivo le : <b className="resultat">{moment(date).format("DD/MM/YYYY")}</b></h6>
             </div>
 

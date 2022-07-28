@@ -39,7 +39,7 @@ class AppFixtures extends Fixture
                 ->setLieu($faker->company)
                 ->setDate($faker->dateTimeThisYear())
                 ->setParticipants($faker->text(20))
-                ->setContenu($faker->text(200));
+                ->setContenu($faker->text(2000));
             $manager->persist($reunion);
             for ($k = 0; $k < mt_rand(2, 10); $k++) {
                 $depense = new Depenses();
@@ -61,6 +61,7 @@ class AppFixtures extends Fixture
                         ->setDifficulte($faker->text(10))
                         ->setSuggestion($faker->text(10))
                         ->setDepenses($depense)
+                        ->setRemarque($faker->text(40))
                         ->setMissionnaire($user);
                     $manager->persist($mission);
                 }

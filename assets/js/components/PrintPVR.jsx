@@ -19,6 +19,7 @@ const PrintPVR = props => {
         objet: "",
         lieu: "",
         participants: "",
+        contenu: ""
     });
 
     // GESTION D'IMPRESSION
@@ -35,8 +36,8 @@ const PrintPVR = props => {
             const data = await axios
                 .get("http://127.0.0.1:8000/api/reunions/" + idR)
                 .then(Response => Response.data);
-            const { date, participants, lieu, objet } = data;
-            setPvReunion({ date, participants, lieu, objet });
+            const { date, participants, lieu, objet, contenu } = data;
+            setPvReunion({ date, participants, lieu, objet, contenu });
         } catch (error) {
             console.log(error.Response);
         }
@@ -69,6 +70,9 @@ const PrintPVR = props => {
                     <h6>Lieu : <b className="resultat">{pvReunion.lieu}</b></h6>
                     <h6>Date : <b className="resultat">{formatDate(pvReunion.date)}</b></h6>
                     <h6>Participants : <b className="resultat">{pvReunion.participants}</b></h6>
+                </div>
+                <div className="content3">
+                    <p>{pvReunion.contenu}</p>
                 </div>
             </div>
 

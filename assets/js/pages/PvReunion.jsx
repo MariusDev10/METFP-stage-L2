@@ -1,33 +1,47 @@
 import React, { useRef, useState } from "react";
 import '../../styles/app.css';
-import { toast } from "react-toastify";
+import Axios from "axios";
 import Field from "../components/Forms/Field";
 import { Editor } from "@tinymce/tinymce-react";
 
 /**IMPORTATION DES IMAGES */
 import logo from '../../image/logo.png';
-const PvReunion = props => {
+const PvReunion = ({ history }) => {
 
     /**ajout d'une noouvelle PV REUNION */
-    const [missions, setMissions] = useState({
+    const [reunions, setReunions] = useState({
         date: "",
-        destination: "",
-        objectif: "",
-        contexte: "",
-        solution: ""
+        lieu: "",
+        objet: "",
+        participants: "",
+        contenu: ""
     });
     const handleChange = (Event) => {
         const value = Event.currentTarget.value;
         const name = Event.currentTarget.name;
-        setMissions({ ...missions, [name]: value });
+        setReunions({ ...reunions, [name]: value });
     }
-
+    const handleSubmit = async event => {
+        event.preventDefault();
+        try {
+            const response = await Axios.post("http://127.0.0.1:8000/api/reunions", reunions);
+            toast.success("Compte creer avec succés")
+            history.replace("/login");
+        } catch (error) {
+            console.log(error.response);
+            const { violation } = error.response.data;
+            if (violation) {
+                const apiError = {};
+                violation.forEach(violation => {
+                    apiError[violation.propertyPath] = violation.message
+                });
+                setErrors(apiError);
+            }
+            toast.error("Une erreur est survenue , veiller ressayer ")
+        }
+    }
     /**GET TINYMCE CONTENT */
     const editorRef = useRef();
-    const handler = (e, editor) => {
-        alert(editorRef.current.getContent());
-    }
-
     return (
         <>
             <div className="container-fluid" id="pv" style={{ marginTop: '0.5cm' }}>
@@ -41,25 +55,25 @@ const PvReunion = props => {
                             <div className="rap3">
                                 <div className="left2">
                                     <h5 className="mb-5">EN TETE</h5>
-                                    <Field label="Objet" value={missions.destination} onChange={handleChange} name="destination" />
-                                    <Field label='Date' value={missions.date} onChange={handleChange} type="date" name="date" />
-                                    <Field label="Lieu" className="form-control" value={missions.objectif} onChange={handleChange} placeholder="Objectif" name="objectif" />
-                                    <Field label="Participants" value={missions.contexte} onChange={handleChange} name="contexte" type="text" />
-                                    <button className="btn btn-danger" style={{ width: '100%' }}>Enregistrer</button>
+                                    <Field label="Objet" value={reunions.objet} onChange={handleChange} name="objet" />
+                                    <Field label='Date' value={reunions.date} onChange={handleChange} type="date" name="date" />
+                                    <Field label="Lieu" className="form-control" value={reunions.lieu} onChange={handleChange} placeholder="Objectif" name="lieu" />
+                                    <Field label="Participants" value={reunions.participants} onChange={handleChange} name="participants" type="text" />
+
                                 </div>
                                 <div className="right2">
                                     <p>CONTENUE</p>
-                                    <Editor
-                                        onInit={(evt, editor) => editorRef.current = editor}
-                                    />
-                                    <button className="btn btn-success btn-sm mt-3" onClick={handler}>Voir le resultat</button>
+                                    <Editor onInit={(evt, editor) => editorRef.current = reunions.contenu} />
+                                    <button className="btn btn-danger" style={{ width: '100%', marginTop: '0.5cm' }} onSubmit={handleSubmit}>Enregistrer</button>
                                 </div>
                             </div>
                         </div>
                     </form>
                 </div>
-
             </div>
+            <footer style={{ height: '1.5cm', backgroundColor: ' #20bcaf', marginTop: '1.3cm', textAlign: 'center' }}>
+                <p style={{ fontSize: '0.7em', color: 'white', paddingTop: '0.5cm' }}>Ministere de l'enseignement Technique et de Formation Professionnelle Copyright 2022</p>
+            </footer>
         </>
     );
 }

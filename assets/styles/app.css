@@ -655,9 +655,10 @@ body {
 }
 
 #profil {
-    box-shadow: 0 0 7px #117c73;
-    width: 40%;
+    box-shadow: 0 0 15px #117c73;
+    width: 20%;
     border-radius: 15px;
+    margin-right: 5cm;
     float: right;
     padding: 0.3cm;
     font-family: system-ui;

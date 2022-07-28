@@ -14,7 +14,7 @@ const Profil = () => {
                         <img src={photos} className='img-fluid' style={{ width: '4cm' }} />
                     </div>
                     <div className="name">
-                        <h3>RANDRIANARISON</h3>
+                        <h6>RANDRIANARISON</h6>
                         <p>Jacquit Marius</p>
 
                     </div> <hr />

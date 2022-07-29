@@ -48,6 +48,7 @@ const Login = ({ onLogin, history }) => {
                                 onChange={handleChange}
                                 name="username"
                                 type="email"
+                                required
                                 className={"form-control" + (error && " is-invalid")}
                                 id="username"
                                 placeholder="name@example.com"
@@ -62,6 +63,7 @@ const Login = ({ onLogin, history }) => {
                                 name="password"
                                 onChange={handleChange}
                                 type="password"
+                                required
                                 className={"form-control" + (error && " is-invalid")}
                                 id="password"
                                 placeholder="Password"

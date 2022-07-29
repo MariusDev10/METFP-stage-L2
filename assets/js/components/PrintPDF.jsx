@@ -38,7 +38,7 @@ const PrintPDF = props => {
     const handlePrint = useReactToPrint({
         content: () => componentRef.current,
         documentTitle: 'Impression de Rapport',
-        onAfterPrint: () => toast.success("Impression termine avec succee")
+        onAfterPrint: () => toast.success("Impression terminé avec succée")
     });
 
     //GET RAPPORT (MISSIONS)

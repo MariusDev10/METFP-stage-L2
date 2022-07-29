@@ -1,43 +1,64 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import '../../styles/app.css';
 import Axios from "axios";
 import Field from "../components/Forms/Field";
 import { Editor } from "@tinymce/tinymce-react";
+import { toast } from "react-toastify";
 
 /**IMPORTATION DES IMAGES */
 import logo from '../../image/logo.png';
-const PvReunion = ({ history }) => {
-
+const PvReunion = props => {
+    const [editing, setEditing] = useState(false);
+    const { idN = "new" } = props.match.params;
     /**ajout d'une noouvelle PV REUNION */
     const [reunions, setReunions] = useState({
         date: "",
         lieu: "",
         objet: "",
-        participants: "",
-        contenu: ""
+        participants: ""
     });
     const handleChange = (Event) => {
         const value = Event.currentTarget.value;
         const name = Event.currentTarget.name;
         setReunions({ ...reunions, [name]: value });
     }
+
+    const fetchReunion = async idN => {
+        try {
+            const data = await Axios
+                .get("http://127.0.0.1:8000/api/reunions/" + idN)
+                .then(Response => Response.data);
+            const { date, participants, lieu, objet } = data;
+            setReunions({ date, participants, lieu, objet });
+        } catch (error) {
+            console.log(error.Response);
+        }
+    }
+    useEffect(() => {
+        if (idN != 'new') {
+            setEditing(true);
+            fetchReunion(idN);
+        }
+    }, [idN]);
     const handleSubmit = async event => {
         event.preventDefault();
-        try {
-            const response = await Axios.post("http://127.0.0.1:8000/api/reunions", reunions);
-            toast.success("Compte creer avec succés")
-            history.replace("/login");
-        } catch (error) {
-            console.log(error.response);
-            const { violation } = error.response.data;
-            if (violation) {
-                const apiError = {};
-                violation.forEach(violation => {
-                    apiError[violation.propertyPath] = violation.message
-                });
-                setErrors(apiError);
+        if (editing) {
+            const response = await Axios.put("http://127.0.0.1:8000/api/reunions" + idN, reunions);
+        } else {
+            try {
+                const response = await Axios.post("http://127.0.0.1:8000/api/reunions", reunions);
+            } catch (error) {
+                console.log(error.response);
+                const { violation } = error.response.data;
+                if (violation) {
+                    const apiError = {};
+                    violation.forEach(violation => {
+                        apiError[violation.propertyPath] = violation.message
+                    });
+                    setErrors(apiError);
+                }
+                toast.error("Une erreur est survenue , veiller ressayer ")
             }
-            toast.error("Une erreur est survenue , veiller ressayer ")
         }
     }
     /**GET TINYMCE CONTENT */
@@ -46,8 +67,8 @@ const PvReunion = ({ history }) => {
         <>
             <div className="container-fluid" id="pv" style={{ marginTop: '0.5cm' }}>
                 <div className="titre text-center">
-                    <img src={logo} alt="" style={{ width: '1.5cm', position: 'absolute', marginLeft: '-5cm', marginTop: '-0.4cm' }} />
-                    <h4>PV REUNION METFP</h4>
+                    <img src={logo} alt="" style={{ width: '1.5cm', position: 'absolute', marginLeft: '-8cm', marginTop: '-0.4cm' }} />
+                    {!editing && <h4>CREATION DE PV REUNION METFP</h4> || <h4>MODIFICATION DE PV REUNION METFP</h4>}
                 </div>
                 <div className="container-fluid" id="formulaire">
                     <form action="">
@@ -63,7 +84,7 @@ const PvReunion = ({ history }) => {
                                 </div>
                                 <div className="right2">
                                     <p>CONTENU</p>
-                                    <Editor onInit={(evt, editor) => editorRef.current = reunions.contenu} />
+                                    <Editor onInit={(evt, editor) => editorRef.current} />
                                     <button className="btn btn-danger" style={{ width: '100%', marginTop: '0.5cm' }} onSubmit={handleSubmit}>Enregistrer</button>
                                 </div>
                             </div>

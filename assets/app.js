@@ -77,9 +77,9 @@ const App = () => {
                         }
                     />
 
-                    /**ROUTE VERS L'AJOUT DE NOUVELLE PV REUNION */
+
                     <Route
-                        path='/pvReunion'
+                        path='/pvReunion/:idN'
                         render={props => isAuthenticated ?
                             (<PvReunion {...props} />
                             ) : (
@@ -112,7 +112,7 @@ const App = () => {
 
                     /**ROUTE VERS L'AJOUT DE NOUVELLE RAPPORT DE MISSION */
                     <Route
-                        path='/rapport'
+                        path='/rapport/:idM'
                         render={props => isAuthenticated ?
                             (<Rapoort {...props} />
                             ) : (

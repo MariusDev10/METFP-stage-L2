@@ -31,7 +31,7 @@ const ListesMission = () => {
                         <input type="text" placeholder="Recherche..." className="form-control" />
                         <button type="submit" className="btn btn-success">Chercher</button>
                     </form>
-                    <Link to="/Rapport" className="btn btn-success btn-sm mb-4">
+                    <Link to="/Rapport/new" className="btn btn-success btn-sm mb-4">
                         <i><img src={add} alt="" style={{ width: '0.3cm' }} /> </i>
                         Creer un nouveau rapport
                     </Link>
@@ -65,7 +65,7 @@ const ListesMission = () => {
                                         <td>{mission.missionnaire_id}</td>
                                         <td>
                                             <NavLink to={"/print/" + mission.id}><button className="btn btn-sm btn-success mt-2">imprimer</button></NavLink>
-                                            <NavLink to={"/print/" + mission.id}><button className="btn btn-sm btn-default mt-2" style={{ border: '1px solid', marginLeft: '0.1cm' }}>modifier</button></NavLink>
+                                            <NavLink to={"/rapport/" + mission.id}><button className="btn btn-sm btn-default mt-2" style={{ border: '1px solid', marginLeft: '0.1cm' }}>modifier</button></NavLink>
                                         </td>
                                     </tr>
                                 )}

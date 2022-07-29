@@ -44,7 +44,7 @@ const Home = ({ history }) => {
                     <div className="porte-logo">
                         <img src={logo} alt="" className="logo img-fluid" />
                     </div>
-                    <NavLink to="/Rapport"><button className="btn btn-success"><i><img src={add} alt="" /></i>  Nouveau rapport</button></NavLink>
+                    <NavLink to="/Rapport/new"><button className="btn btn-success"><i><img src={add} alt="" /></i>  Nouveau rapport</button></NavLink>
                     <NavLink to="/Listes"><button className="btn btn-success"><i><img src={list} alt="" /></i>  Liste des missions</button></NavLink>
                     <NavLink to="/ListePVR"><button className="btn btn-success"><i><img src={list} alt="" /></i> Listes PV reunion</button></NavLink>
                     <hr />
@@ -83,7 +83,7 @@ const Home = ({ history }) => {
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to='/Rapport'>
+                            <NavLink to='/Rapport/new'>
                                 <div className="one">
                                     <img src={rapport} id="logo-stat" className="img-fluid mt-3" />
                                     <h5>RAPPORT</h5>
@@ -114,7 +114,7 @@ const Home = ({ history }) => {
                                         <td>{mission.objectif}</td>
                                         <td>
                                             <NavLink to={"/print/" + mission.id}><button className="btn btn-sm btn-success mt-2">imprimer</button></NavLink>
-                                            <NavLink to={"/print/" + mission.id}><button className="btn btn-sm btn-default mt-2" style={{ border: '1px solid', marginLeft: '0.1cm' }}>modifier</button></NavLink>
+                                            <NavLink to={"/rapport/" + mission.id}><button className="btn btn-sm btn-default mt-2" style={{ border: '1px solid', marginLeft: '0.1cm' }}>modifier</button></NavLink>
                                         </td>
                                     </tr>
                                 )}

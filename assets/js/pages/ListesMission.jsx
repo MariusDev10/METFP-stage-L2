@@ -33,45 +33,47 @@ const ListesMission = () => {
                     </form>
                     <Link to="/Rapport" className="btn btn-success btn-sm mb-4">
                         <i><img src={add} alt="" style={{ width: '0.3cm' }} /> </i>
-                        Creer un nouveau Rapport
+                        Creer un nouveau rapport
                     </Link>
                     <h4>LISTES DE VOS MISSIONS</h4>
                 </div>
-                <div className="container-fluid  mt-2" id="liste">
-
-                    <table className="table table-hover table-bordered table-striped" id="table1">
-                        <thead>
-                            <tr className="head">
-                                <th>Destination</th>
-                                <th>Date</th>
-                                <th>Lieu</th>
-                                <th>GPS</th>
-                                <th>Objectif</th>
-                                <th>Contexte</th>
-                                <th>Missionnaire</th>
-                                <th>Rapport</th>
-                            </tr>
-
-                        </thead>
-                        {!Loading && <tbody>
-                            {missions.map(mission =>
-                                <tr key={mission.id} >
-                                    <td>{mission.destination}</td>
-                                    <td>{formatDate(mission.date_mission)}</td>
-                                    <td>{mission.lieu_intervation}</td>
-                                    <td>{mission.coordonne_gps}</td>
-                                    <td>{mission.objectif}</td>
-                                    <td>{mission.contexte}</td>
-                                    <td>{mission.missionnaire_id}</td>
-                                    <td>
-                                        <NavLink to={"/print/" + mission.id}><button className="btn btn-sm btn-success mt-2">Imprimer</button></NavLink>
-                                    </td>
+                <div className="container-fluid  mt-2">
+                    <div className="liste">
+                        <table className="table table-hover table-bordered table-striped" id="table1">
+                            <thead>
+                                <tr className="head">
+                                    <th>Destination</th>
+                                    <th>Date</th>
+                                    <th>Lieu</th>
+                                    <th>GPS</th>
+                                    <th>Objectif</th>
+                                    <th>Contexte</th>
+                                    <th>Missionnaire</th>
+                                    <th style={{ width: '5cm' }}>Rapport</th>
                                 </tr>
-                            )}
 
-                        </tbody>}
-                    </table>
-                    {Loading && <Loader />}
+                            </thead>
+                            {!Loading && <tbody>
+                                {missions.map(mission =>
+                                    <tr key={mission.id} >
+                                        <td>{mission.destination}</td>
+                                        <td>{formatDate(mission.date_mission)}</td>
+                                        <td>{mission.lieu_intervation}</td>
+                                        <td>{mission.coordonne_gps}</td>
+                                        <td>{mission.objectif}</td>
+                                        <td>{mission.contexte}</td>
+                                        <td>{mission.missionnaire_id}</td>
+                                        <td>
+                                            <NavLink to={"/print/" + mission.id}><button className="btn btn-sm btn-success mt-2">imprimer</button></NavLink>
+                                            <NavLink to={"/print/" + mission.id}><button className="btn btn-sm btn-default mt-2" style={{ border: '1px solid', marginLeft: '0.1cm' }}>modifier</button></NavLink>
+                                        </td>
+                                    </tr>
+                                )}
+
+                            </tbody>}
+                        </table>
+                        {Loading && <Loader />}
+                    </div>
                 </div>
             </div>
             <footer style={{ height: '1.5cm', backgroundColor: ' #20bcaf', marginTop: '1.3cm', textAlign: 'center' }}>

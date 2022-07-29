@@ -20,7 +20,7 @@ const Navbar = ({ isAuthenticated }) => {
                             <ul className="navbar-nav me-auto">
                                 <li className="nav-item">
                                     <a className="nav-link" href="#/home">
-                                        <button className="btn btn-default active" style={{ border: 'solid 1px white', fontSize: '0.7em', fontWeight: 'bold' }}>Principale</button>
+                                        <button className="btn btn-default active" style={{ border: 'solid 1px white', fontSize: '0.7em', fontWeight: 'bold' }}>Acceuil</button>
                                     </a>
                                 </li>
 
@@ -28,7 +28,7 @@ const Navbar = ({ isAuthenticated }) => {
                                     <a className="nav-link" href="#/pvReunion">
                                         <button className="btn btn-default" style={{ border: 'solid 1px white', fontSize: '0.7em', fontWeight: 'bold' }}>
                                             <i><img src={add} alt="" style={{ width: '0.3cm' }} />  </i>
-                                            PV Reunion
+                                            PV reunion
                                         </button>
                                     </a>
                                 </li>

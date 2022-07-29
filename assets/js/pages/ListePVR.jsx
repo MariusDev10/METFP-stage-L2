@@ -30,17 +30,16 @@ const ListesMission = () => {
                 <div className="container" id="cherc">
 
                     <form className="form-group">
-                        <input type="text" placeholder="Recherche Objet" className="form-control" />
+                        <input type="text" placeholder="Recherche objet" className="form-control" />
                         <button type="submit" className="btn btn-success">Chercher</button>
                     </form>
                     <Link to="/pvReunion" className="btn btn-success btn-sm mb-4">
                         <i><img src={add} alt="" style={{ width: '0.3cm' }} /> </i>
-                        Nouveau PV Reunion
+                        Nouveau PV reunion
                     </Link>
                     <h4>LISTES DES PV REUNION EXISTANTS</h4>
                 </div>
                 <div className="container-fluid mt-2" id="liste">
-
                     <table className="table table-hover table-striped table-bordered" id="table1">
                         <thead>
                             <tr className="head">
@@ -50,7 +49,6 @@ const ListesMission = () => {
                                 <th>Participant</th>
                                 <th>Action</th>
                             </tr>
-
                         </thead>
                         {!Loading && <tbody>
                             {reunions.map(reunion =>
@@ -61,6 +59,7 @@ const ListesMission = () => {
                                     <td>{reunion.participants}</td>
                                     <td>
                                         <NavLink to={"/printPVR/" + reunion.id}><button className="btn btn-sm btn-success mt-2">Imprimer</button></NavLink>
+                                        <NavLink to={"/print/" + reunion.id}><button className="btn btn-sm btn-default mt-2" style={{ border: '1px solid', marginLeft: '0.1cm' }}>modifier</button></NavLink>
                                     </td>
                                 </tr>
                             )}

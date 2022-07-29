@@ -62,7 +62,7 @@ const PvReunion = ({ history }) => {
 
                                 </div>
                                 <div className="right2">
-                                    <p>CONTENUE</p>
+                                    <p>CONTENU</p>
                                     <Editor onInit={(evt, editor) => editorRef.current = reunions.contenu} />
                                     <button className="btn btn-danger" style={{ width: '100%', marginTop: '0.5cm' }} onSubmit={handleSubmit}>Enregistrer</button>
                                 </div>

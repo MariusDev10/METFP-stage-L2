@@ -49,7 +49,7 @@ const Home = ({ history }) => {
                     <NavLink to="/ListePVR"><button className="btn btn-success"><i><img src={list} alt="" /></i> Listes PV reunion</button></NavLink>
                     <hr />
                     <div className="compte">
-                        <h6>Utilisateur Connecté</h6> <hr />
+                        <h6>Utilisateur connecté</h6> <hr />
                         <img src={compte} alt="" style={{ width: '3cm', borderRadius: '50%', marginBottom: '0.3cm' }} />
                         <p>RANDRIANARISON</p>
                         <button className="btn btn-danger" onClick={handleLogout}>Deconnection</button>
@@ -101,7 +101,7 @@ const Home = ({ history }) => {
                                     <th>Lieu</th>
                                     <th>GPS</th>
                                     <th>Objectif</th>
-                                    <th>Rapport</th>
+                                    <th style={{ width: '5cm' }}>Rapport</th>
                                 </tr>
                             </thead>
                             {!Loading && <tbody>
@@ -113,7 +113,8 @@ const Home = ({ history }) => {
                                         <td>{mission.coordonne_gps}</td>
                                         <td>{mission.objectif}</td>
                                         <td>
-                                            <NavLink to={"/print/" + mission.id}><button className="btn btn-sm btn-success mt-2">Imprimer</button></NavLink>
+                                            <NavLink to={"/print/" + mission.id}><button className="btn btn-sm btn-success mt-2">imprimer</button></NavLink>
+                                            <NavLink to={"/print/" + mission.id}><button className="btn btn-sm btn-default mt-2" style={{ border: '1px solid', marginLeft: '0.1cm' }}>modifier</button></NavLink>
                                         </td>
                                     </tr>
                                 )}

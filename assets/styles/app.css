@@ -34,12 +34,26 @@ body {
 
 .liste {
     height: 45vh;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 #liste {
-    height: 48vh;
-    overflow-y: scroll;
+    height: 45vh;
+    overflow-y: auto;
+}
+
+#liste thead th {
+    position: sticky;
+    top: 0;
+}
+
+.liste thead th {
+    position: sticky;
+    top: 0;
+}
+
+.liste th {
+    background-color: #20bcaf;
 }
 
 #table1 button {
@@ -51,6 +65,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;
     font-size: 0.7em;
+    width: 100%;
     padding: 1cm;
 }
 

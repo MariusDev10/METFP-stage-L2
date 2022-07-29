@@ -17,6 +17,7 @@ const Field = ({
                 onChange={onChange}
                 type={type}
                 placeholder={placeholder}
+                required
                 name={name}
                 id={name}
                 className={"form-control" + (error && "is-invalid")}
